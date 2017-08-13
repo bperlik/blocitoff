@@ -13,9 +13,11 @@
   "author": "Bloc Inc",
   "license": "ISC",
   "dependencies": {
+    "@ui-router/angularjs": "latest",
+    "angular-ui-router": "^1.0.0-rc.1",
     "hapi": "~16.4.0",
-    "path": "^0.4.9",
-    "inert": "^4.2.0"
+    "inert": "^4.2.0",
+    "path": "^0.4.9"
   },
   "engines": {
     "node": ">=6.11.1"
