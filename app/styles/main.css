@@ -68,6 +68,11 @@ span .task-list {
    color: #ffffff;
 }
 
+.active {
+	color: red;
+	font-weight: bolder;
+}
+
 .title-bar {
 	position: absolute;
 	top: 0px;

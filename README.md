@@ -1,4 +1,4 @@
-## Blocitoff
+# Blocitoff
 
 A self-destructing to do list.
 Items on the list are deleted automatically after 7 days.
@@ -7,9 +7,9 @@ The app is deployed on Heroku:
 
 The source code is on GitHub: https://github.com/bperlik/blocitoff
 
-This app was created as part of the [Bloc](www.bloc.io)  Software Development Track.
+This app was created as part of the [Bloc](www.bloc.io) Software Development Track.
 
-# Features
+## Features
 
 + Tasks are synced with a persistent backend database
 + Users can see active tasks in a default list
@@ -18,12 +18,12 @@ This app was created as part of the [Bloc](www.bloc.io)  Software Development Tr
 + Tasks are submitted with description, priority level, and three states (expired,completed or active).
 + User can mark tasks as complete.
 
-# Starter Application
+## Starter Application
 A starter application for student projects in Bloc's [Frontend Web Development Course](https://www.bloc.io/frontend-development-bootcamp).
 
 ## Pull Down the Code
 
-Start by cloning the repository:
+Start by cloning the repositosry:
 
 ```
 $ git clone https://github.com/Bloc/bloc-frontend-project-starter.git <your-frontend-project-name>
