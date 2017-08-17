@@ -7,6 +7,14 @@
         // synchonized array: set $scope local array to hold tasks to a firebase object that calls $firebase array
         $scope.tasks = $firebaseArray(ref);
 
+        // write a scoped method and pass it into ng-hide, return true if expired
+        $scope.expired = function(task) {
+            var seven_days = 604800000
+            var currentTime = new Date().getTime();
+            if ( ( (task.createdAt + seven_days) - currentTime) <= 0 ) {
+                return true;
+            }
+        }
     }
 
     angular
