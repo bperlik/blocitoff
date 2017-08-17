@@ -15,7 +15,7 @@
              .state('completed', {
                    url: '/',
                    controller: 'CompletedCtrl as completed',
-                   templateUrl:'<h4>Testing link to Completed</h4>'
+                   templateUrl:'/templates/completed.html'
              });
       }
 

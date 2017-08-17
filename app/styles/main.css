@@ -65,7 +65,12 @@ span .task-list {
    text-align: left;
 	 font-style: normal;
 	 font-size: 1rem;
-   color: #ffffff;
+}
+
+.tasks-container-completed {
+	text-decoration: line-through;
+	text-align: left;
+	font-style: normal;
 }
 
 .active {

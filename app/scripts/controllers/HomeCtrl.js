@@ -8,7 +8,7 @@
         $scope.tasks = $firebaseArray(ref);
 
         // write a scoped method and pass it into ng-hide, return true if expired
-        $scope.notActive = function(task) {
+        $scope.Active = function(task) {
             var seven_days = 604800000
             var currentTime = new Date().getTime();
             if ( ( (task.createdAt + seven_days) - currentTime) <= 0 ) {

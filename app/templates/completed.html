@@ -1,0 +1,8 @@
+<!-- Title -->
+<div class="title">
+      <h3>Expired or Completed Tasks</h3>
+</div>
+
+<div class="tasks-container-completed" >
+    <div ng-repeat= "task in tasks" ng-hide=notActive(task) > {{task.content}} </div>
+</div>

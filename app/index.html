@@ -15,7 +15,8 @@
         <h2>Blocitoff </h2>
         <h5>A Self Destructive To Do List</h5>
 
-        <a ui-sref="completed" ui-sref-active="active">Completed/Expired Tasks</a>
+        <a ui-sref="home" ui-sref-active="active">Active Tasks</a>
+        <a ui-sref="completed" ui-sref-active="active">Tasks History</a>
 
         <ui-view></ui-view>
 
@@ -49,6 +50,7 @@
         <!-- Application Scripts -->
         <script src="/scripts/app.js"></script>
         <script src="/scripts/controllers/HomeCtrl.js"></script>
+        <script src="/scripts/controllers/CompletedCtrl.js"></script>
 
     </body>
 
