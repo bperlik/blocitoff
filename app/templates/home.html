@@ -1,8 +1,20 @@
 <!-- Title -->
 <div class="title">
-      <h3>Current Tasks</h3>
+    <h3>Active Tasks</h3>
 </div>
 
-<div class="tasks-container">
-    <div ng-repeat= "task in tasks" ng-hide= Active(task) > {{task.content}} </div>
+<!-- Enter new Tasks with dropdown options for priority -->
+<div>
+  <form ng-submit="home.addTask">
+    <input type="text" ng-model="taskData" name="content" placeholder="Enter new task here">
+    <button type="submit" class="btn btn-primary pull-right" ng-click="createTask(newTask)">Add Task</button>
+  </form>
+</div>
+<br>
+
+<!-- Repeat Tasks from Firebase Database -->
+<div class="tasks-container" ng-repeat="taskList in home.taskData"
+ ng-hide="home.expiredTask(taskList.createdAt) || home.completedTask(taskList.completed)">
+  <div>- {{ taskList.content }}
+  </div>
 </div>

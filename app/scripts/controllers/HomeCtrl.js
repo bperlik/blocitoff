@@ -1,25 +1,39 @@
 (function() {
-    function HomeCtrl($scope, $firebaseArray) {
+  function HomeCtrl(Task) {
+    this.taskData = Task.all;
 
-        var tasks=null;
-        //var ref = new Firebase("https://blocitoff-3eb16.firebaseio.com/tasks/");
-        var ref = firebase.database().ref().child("tasks");
-        // synchonized array: set $scope local array to hold tasks to a firebase object that calls $firebase array
-        $scope.tasks = $firebaseArray(ref);
+    // write scoped methods and pass it into ng-hide, return true if expired
+    this.expiredTask = function(createdAtTime) {
+      var seven_days = 604800000;
+      var currentTime = new Date().getTime();
+      if (currentTime > (createdAtTime + seven_days)) {
+        return true;
+      }
+    };
 
-        // write a scoped method and pass it into ng-hide, return true if expired
-        $scope.Active = function(task) {
-            var seven_days = 604800000
-            var currentTime = new Date().getTime();
-            if ( ( (task.createdAt + seven_days) - currentTime) <= 0 ) {
-                return true;
-            } else if (task.completed == "yes") {
-                return true;
-            }
-        };
-    }
+    this.completedTask = function(completedStatus) {
+      if (completedStatus === "yes") {
+        return true;
+      }
+    };
 
-    angular
-        .module('blocitoff')
-        .controller('HomeCtrl', ['$scope', '$firebaseArray', HomeCtrl]);
+    // write a method using $Add to create new task on firebase array
+    this.createTask = function(content) {
+      if (this.content) {
+        this.taskData.$add({
+          content: this.content,
+          completed: "no",
+          createdAt: Date.now(),
+          user: "Unknown",
+          $priority: "low"
+        });
+      }
+    };
+
+
+  }
+
+  angular
+    .module('blocitoff')
+    .controller('HomeCtrl', ['Task', HomeCtrl]);
 })();

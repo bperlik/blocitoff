@@ -1,30 +1,28 @@
 (function() {
-    function CompletedCtrl($scope, $firebaseArray) {
+    function CompletedCtrl(Task) {
 
-      var tasks=null;
-      //var ref = new Firebase("https://blocitoff-3eb16.firebaseio.com/tasks/");
-      var ref = firebase.database().ref().child("tasks");
-      // synchonized array: set $scope local array to hold tasks to a firebase object that calls $firebase array
-      $scope.tasks = $firebaseArray(ref);
+      this.taskData = Task.all;
 
       // method to hide all Active and show all non-active
       // true = hide    false = show
+      // write scoped methods and pass it into ng-hide, return true if expired
+      this.expiredTask = function(createdAtTime) {
+        var seven_days = 604800000;
+        var currentTime = new Date().getTime();
+        if (currentTime > (createdAtTime + seven_days)) {
+          return true;
+        }
+      };
 
-      $scope.notActive = function(task) {
-          var seven_days = 604800000
-          var currentTime = new Date().getTime();
-          if ( ( (task.createdAt + seven_days) - currentTime) <= 0 ) {
-              return false;
-          } else if (task.completed == "yes") {
-              return false;
-          } else {
-              return true;
-          }
+      this.completedTask = function(completedStatus) {
+        if (completedStatus === "yes") {
+          return true;
+        }
       };
 
     }
 
     angular
         .module('blocitoff')
-        .controller('CompletedCtrl', ['$scope', '$firebaseArray', CompletedCtrl]);
+        .controller('CompletedCtrl', ['Task', CompletedCtrl]);
 })();
