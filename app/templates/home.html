@@ -5,16 +5,19 @@
 
 <!-- Enter new Tasks with dropdown options for priority -->
 <div>
-  <form ng-submit="home.addTask">
-    <input type="text" ng-model="taskData" name="content" placeholder="Enter new task here">
-    <button type="submit" class="btn btn-primary pull-right" ng-click="createTask(newTask)">Add Task</button>
+  <form ng-submit="home.createTask(home.data.selectedOption.name)">
+        Enter task and press enter:
+        <input type="text" ng-model="home.newTask" name="newTask" />
+        <select name="mySelect" id="mySelect" ng-options="option.name for option in home.data.availableOptions track by option.id" ng-model="home.data.selectedOption">
+        </select>
+        <input type="submit" id="submit" value="Submit" />
   </form>
 </div>
 <br>
 
 <!-- Repeat Tasks from Firebase Database -->
 <div class="tasks-container" ng-repeat="taskList in home.taskData"
- ng-hide="home.expiredTask(taskList.createdAt) || home.completedTask(taskList.completed)">
-  <div>- {{ taskList.content }}
-  </div>
+     ng-hide="home.expiredTask(taskList.createdAt) || home.completedTask(taskList.completed)">
+  <h4>- {{ taskList.content }}.....{{ taskList.priority }} priority
+  </h4>
 </div>

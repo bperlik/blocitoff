@@ -2,7 +2,7 @@
 <div class="title">
       <h3>Expired or Completed Tasks</h3>
 </div>
-
+<br>
 <div class="tasks-container-completed" ng-repeat="taskList in completed.taskData"
   ng-show="completed.expiredTask(taskList.createdAt) || completed.completedTask(taskList.completed)">
-        <h4>{{ taskList.content }}</h4>
+        <h4>- {{ taskList.content }}</h4>

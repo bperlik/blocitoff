@@ -1,6 +1,6 @@
 (function() {
-  function HomeCtrl(Task) {
-    this.taskData = Task.all;
+  function HomeCtrl(Task, $scope) {
+  this.taskData = Task.all;
 
     // write scoped methods and pass it into ng-hide, return true if expired
     this.expiredTask = function(createdAtTime) {
@@ -18,22 +18,31 @@
     };
 
     // write a method using $Add to create new task on firebase array
-    this.createTask = function(content) {
-      if (this.content) {
+    this.createTask = function(priority) {
+      if (this.newTask) {
         this.taskData.$add({
-          content: this.content,
+          content: this.newTask,
           completed: "no",
           createdAt: Date.now(),
           user: "Unknown",
           $priority: "low"
         });
+        this.taskData = '';
       }
     };
 
+    this.data = {
+      availableOptions: [
+        {id: '1', name: 'High'},
+        {id: '2', name: 'Medium'},
+        {id: '3', name: 'Low'}
+      ],
+      selectedOption: {id: '3', name: 'Low'}
+    };
 
   }
 
   angular
     .module('blocitoff')
-    .controller('HomeCtrl', ['Task', HomeCtrl]);
+    .controller('HomeCtrl', ['Task', '$scope', HomeCtrl]);
 })();
