@@ -1,6 +1,13 @@
 (function() {
   function HomeCtrl(Task, $scope) {
-  this.taskData = Task.all;
+    this.taskData = Task.all;
+
+    // update record to complete true
+    this.updateTask = function (task) {
+      Task.completeTask(task);
+    };
+
+    //$scope.taskData = $filter('orderBy')(this.taskData, 'priority');
 
     // write scoped methods and pass it into ng-hide, return true if expired
     this.expiredTask = function(createdAtTime) {
@@ -11,8 +18,8 @@
       }
     };
 
-    this.completedTask = function(completedStatus) {
-      if (completedStatus === "yes") {
+    this.completedTask = function(task) {
+      if (task === true) {
         return true;
       }
     };
@@ -22,7 +29,7 @@
       if (this.newTask) {
         this.taskData.$add({
           content: this.newTask,
-          completed: "no",
+          completed: false,
           createdAt: Date.now(),
           user: "Unknown",
           $priority: "low"
@@ -31,13 +38,15 @@
       }
     };
 
+    // set options for priority dropdown using id for order
     this.data = {
       availableOptions: [
-        {id: '1', name: 'High'},
-        {id: '2', name: 'Medium'},
-        {id: '3', name: 'Low'}
-      ],
-      selectedOption: {id: '3', name: 'Low'}
+        {id: '1', name: 'high'},
+        {id: '2', name: 'medium'},
+        {id: '3', name: 'low'}
+      ]
+      //,
+      //selectedOption: {id: '3', name: 'Low'}
     };
 
   }

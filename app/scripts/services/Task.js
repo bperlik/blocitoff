@@ -4,10 +4,16 @@
     //var ref = new Firebase("https://blocitoff-3eb16.firebaseio.com/tasks/");
     var ref = firebase.database().ref().child("tasks");
     // synchonized array: set $scope local array to hold tasks to a firebase object that calls $firebase array
-    this.tasks = $firebaseArray(ref);
+    var tasks = $firebaseArray(ref);
+
+    var confirmCompleted = function (task) {
+      task.completed = true;
+      tasks.$save(task);
+    }
 
     return {
-      all: this.tasks,
+      all: tasks,
+      completeTask: confirmCompleted,
     };
 
   }
