@@ -4,25 +4,25 @@
 
     // update record to complete true
     this.updateTask = function (task) {
-      Task.completeTask(task);
+      Task.comfirmCompleted(task);
     };
 
     //$scope.taskData = $filter('orderBy')(this.taskData, 'priority');
 
     // write scoped methods and pass it into ng-hide, return true if expired
-    this.expiredTask = function(createdAtTime) {
+    this.expiredTask = function(createdAt) {
       var seven_days = 604800000;
       var currentTime = new Date().getTime();
-      if (currentTime > (createdAtTime + seven_days)) {
+      if (currentTime > (createdAt + seven_days)) {
         return true;
       }
-    };
+    }
 
     this.completedTask = function(task) {
       if (task === true) {
         return true;
       }
-    };
+    }
 
     // write a method using $Add to create new task on firebase array
     this.createTask = function(priority) {
@@ -32,11 +32,11 @@
           completed: false,
           createdAt: Date.now(),
           user: "Unknown",
-          $priority: "low"
+          priority: priority
         });
         this.taskData = '';
       }
-    };
+    }
 
     // set options for priority dropdown using id for order
     this.data = {

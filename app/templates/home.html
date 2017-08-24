@@ -3,9 +3,7 @@
   <form ng-submit="home.createTask(home.data.selectedOption.name)">
         Enter task and press enter:
         <input type="text" ng-model="home.newTask" name="newTask" />
-        <select name="mySelect" id="mySelect"
-          ng-options="option.name for option in home.data.availableOptions track by option.id"
-          ng-model="home.data.selectedOption">
+        <select name="mySelect" id="mySelect" ng-options="option.name for option in home.data.availableOptions track by option.id" ng-model="home.data.selectedOption">
         </select>
         <input type="submit" id="submit" value="Submit" />
   </form>
@@ -19,8 +17,12 @@
 <!-- Repeat Tasks to list them from synced array / Firebase Database -->
 <div class="tasks-container pull-left" ng-repeat="taskList in home.taskData"
     ng-hide="home.expiredTask(taskList.createdAt) || home.completedTask(taskList.completed)">
-  <h4> - {{ taskList.content }} - {{ taskList.$priority }} priority
-  <button type="button" class="btn btn-default btn-md pull-right" ng-model="singleModel" ng-click"home.updateTask(taskList)">Complete</button>
-</h4>
-<br>
+  <h4> - {{ taskList.content }} - {{ taskList.priority }} - {{taskList.completed}} - {{taskList.createdAt}}
+    <button type="button" class="btn btn-primary pull-right" ng-model="home.taskList" ng-click"home.updateTask(taskList)">
+      Mark Completed
+    </button>
+  </h4>
+
+
+  <br>
 </div>
