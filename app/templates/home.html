@@ -15,14 +15,13 @@
 </div>
 
 <!-- Repeat Tasks to list them from synced array / Firebase Database -->
-<div class="tasks-container pull-left" ng-repeat="taskList in home.taskData"
+<div class="tasks-container pull-left" ng-repeat="taskList in home.taskData | orderBy: 'taskList.priority'"
     ng-hide="home.expiredTask(taskList.createdAt) || home.completedTask(taskList.completed)">
-  <h4> - {{ taskList.content }} - {{ taskList.priority }} - {{taskList.completed}} - {{taskList.createdAt}}
-    <button type="button" class="btn btn-primary pull-right" ng-model="home.taskList" ng-click"home.updateTask(taskList)">
+  <h4> - {{ taskList.content }} - {{ taskList.priority }} - {{taskList.completed}}
+    <button type="button" class="btn btn-primary pull-right" ng-click"home.updateTask(taskList)">
       Mark Completed
     </button>
   </h4>
-
 
   <br>
 </div>

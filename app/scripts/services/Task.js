@@ -7,8 +7,12 @@
     var tasks = $firebaseArray(ref);
 
     var confirmCompleted = function (task) {
+
+      console.log("comfirmCompleted called with" + task);
+      debugger;
+
       task.completed = true;
-      task.$save(task);
+      tasks.$save(task);
     }
 
     return {

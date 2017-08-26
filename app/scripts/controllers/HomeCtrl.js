@@ -2,9 +2,17 @@
   function HomeCtrl(Task, $scope) {
     this.taskData = Task.all;
 
+    // sort by priority using index
+    //var sortOrder = ['high', 'medium', 'low'];
+    //   this.taskData.sort(function(a, b) {
+    //return sortOrder.indexOf(a.priority) - sortOrder.indexOf(b.priority);
+    //});
+
     // update record to complete true
-    this.updateTask = function (task) {
-      Task.comfirmCompleted(task);
+    this.updateTask = function(task) {
+      console.log("updateTask called with" + task);
+      debugger;
+      Task.completeTask(task);
     };
 
     //$scope.taskData = $filter('orderBy')(this.taskData, 'priority');
@@ -45,8 +53,6 @@
         {id: '2', name: 'medium'},
         {id: '3', name: 'low'}
       ]
-      //,
-      //selectedOption: {id: '3', name: 'Low'}
     };
 
   }
